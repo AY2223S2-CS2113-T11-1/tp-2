@@ -71,7 +71,7 @@ public class Task {
     }
     public String getNote(int index){
         return this.additionalNotes.get(index);
-    };
+    }
 
     public void deleteNote(int indexToBeDeleted){
         this.additionalNotes.remove(indexToBeDeleted-1);

@@ -26,7 +26,7 @@ public class TaskList {
             // Adding a Deadline
             if (line.contains("/re")) {
                 try {
-                    addRecurrDeadline(line, tasks);
+                    addRecurringDeadline(line, tasks);
                     Task.incrementCount();
                 } catch(IllegalDeadlineException | StringIndexOutOfBoundsException e) {
                     Ui.deadlineErrorMessage();
@@ -64,7 +64,7 @@ public class TaskList {
             // Adding an Event
             if (line.contains("/re")) {
                 try {
-                    addRecurrEvent(line, tasks);
+                    addRecurringEvent(line, tasks);
                     Task.incrementCount();
                 } catch (IllegalEventException | StringIndexOutOfBoundsException e) {
                     Ui.eventErrorMessage();
@@ -162,7 +162,7 @@ public class TaskList {
         }
     }
 
-    static void addRecurrEvent(String line, ArrayList<Task> tasks) throws IllegalEventException{
+    static void addRecurringEvent(String line, ArrayList<Task> tasks) throws IllegalEventException{
         String description = line.substring(4, line.indexOf("/from")).trim();
         String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
         String end = line.substring(line.indexOf("/to") + 3, line.indexOf("/day")).trim();
@@ -245,7 +245,7 @@ public class TaskList {
      * @param line the line of input from the user
      * @param tasks the array list of tasks
      */
-    static void addRecurrDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException,
+    static void addRecurringDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException,
             IllegalArgumentException {
         String description = line.substring(4, line.indexOf("/by")).trim();
         String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("/day")).trim();
@@ -307,8 +307,8 @@ public class TaskList {
 
     /**
      * edits the attributes of a specific task
-     * @param tasks
-     * @param words
+     * @param tasks The array list of tasks
+     * @param words The array of words generated from the user input
      */
     static void editTask(ArrayList<Task> tasks, String[] words) throws expiredDateException,
             startAfterEndException, EmptyDescriptionException {
@@ -442,8 +442,8 @@ public class TaskList {
 
     /**
      * tries editTask and handles exceptions
-     * @param tasks
-     * @param words
+     * @param tasks The array list of tasks
+     * @param words The array of words generated from the user input
      */
     static void tryEditTask(ArrayList<Task> tasks, String[] words) {
         try {
@@ -457,7 +457,7 @@ public class TaskList {
         } catch (startAfterEndException e) {
             Ui.startAfterEndErrorMessage();
         } catch (EmptyDescriptionException e) {
-            Ui.enmptyDescriptionErrorMessage();
+            Ui.emptyDescriptionErrorMessage();
         }
     }
 
@@ -486,9 +486,9 @@ public class TaskList {
      *
      * @param classes The priority queue of SchoolClasses
      * @param line The line of user input
-     * @throws IllegalArgumentException
-     * @throws NullPointerException
-     * @throws StringIndexOutOfBoundsException
+     * @throws IllegalArgumentException handle IllegalArgumentException
+     * @throws NullPointerException handle NullPointerException
+     * @throws StringIndexOutOfBoundsException handle StringIndexOutOfBoundsException
      */
     static void deleteClass(PriorityQueue<SchoolClass> classes, String line) throws
             IllegalArgumentException, NullPointerException, StringIndexOutOfBoundsException{
@@ -501,7 +501,7 @@ public class TaskList {
             String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
             String endString = line.substring(line.indexOf("/to") + 3).trim();
             SchoolClass toDelete = new SchoolClass(className, description, day, startString, endString);
-            if (classes.remove(toDelete) == true) {
+            if (classes.remove(toDelete)) {
                 Ui.deleteClassMessage();
             } else {
                 Ui.unsuccessfulDeleteClassMessage();

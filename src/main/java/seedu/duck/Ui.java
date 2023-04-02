@@ -20,23 +20,23 @@ import java.util.Random;
  * Deals with interactions with the user
  */
 public class Ui {
-    static void printDuck(){
-        System.out.println("           ,-.\n"+
-                "       ,--' ~.).\n"+
-                "     ,'         `.\n"+
-                "    ; (((__   __)))\n"+
-                "    ;  ( (#) ( (#)\n"+
-                "    |   \\_/___\\_/\n"+
-                "   ,\"  ,-'    `__\".\n"+
-                "  (   ( ._   ____`.)--._        _\n"+
-                "   `._ `-.`-' \\(`-'  _  `-. _,-' `-/`.\n"+
-                "    ,')   `.`._))  ,' `.   `.  ,','  ;\n"+
-                "  .'  .     `--'  /     ).   `.      ;\n"+
-                " ;     `-        /     '  )         ;\n"+
-                " \\                       ')       ,'\n"+
-                "  \\                     ,'       ;\n"+
-                "   \\               `~~~'       ,'\n"+
-                "    `.                      _,'\n"+
+    static void printDuck() {
+        System.out.println("           ,-.\n" +
+                "       ,--' ~.).\n" +
+                "     ,'         `.\n" +
+                "    ; (((__   __)))\n" +
+                "    ;  ( (#) ( (#)\n" +
+                "    |   \\_/___\\_/\n" +
+                "   ,\"  ,-'    `__\".\n" +
+                "  (   ( ._   ____`.)--._        _\n" +
+                "   `._ `-.`-' \\(`-'  _  `-. _,-' `-/`.\n" +
+                "    ,')   `.`._))  ,' `.   `.  ,','  ;\n" +
+                "  .'  .     `--'  /     ).   `.      ;\n" +
+                " ;     `-        /     '  )         ;\n" +
+                " \\                       ')       ,'\n" +
+                "  \\                     ,'       ;\n" +
+                "   \\               `~~~'       ,'\n" +
+                "    `.                      _,'\n" +
                 "      `-._________,--'");
     }
     static void printMotivationalQuote(){
@@ -79,7 +79,7 @@ public class Ui {
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.println("\t " + (i + 1) + "." + tasks.get(i));
-            if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+            if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
                 printList(tasks, i);
             }
         }
@@ -92,14 +92,15 @@ public class Ui {
         borderLine();
         System.out.println("\t Here is your class schedule:\n");
         while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+            System.out.println("\t"+iterator.next());
         }
         borderLine();
     }
 
     /**
      * prints out all classes, deadlines and events happening today
-     * @param tasks array list of all tasks
+     *
+     * @param tasks   array list of all tasks
      * @param classes pq of all classes
      */
     static void listToday(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
@@ -162,7 +163,7 @@ public class Ui {
      * @param tasks the list of tasks
      */
     static void printHighPriority(ArrayList<Task> tasks) {
-        ArrayList<Integer> indexOfHighPriority = new ArrayList<Integer>();
+        ArrayList<Integer> indexOfHighPriority = new ArrayList<>();
         int taskCount = Task.getTaskCount();
         for (int i = 0; i < taskCount; i++) {
             if (tasks.get(i).returnPriority() == 3) {
@@ -174,10 +175,10 @@ public class Ui {
             System.out.println("\t You have " + indexOfHighPriority.size() + " tasks that are high in priority!");
             for (int i = 0; i < indexOfHighPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfHighPriority.get(i)));
-                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
                     ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
-                    for (int j = 0; j < toBePrinted.size(); j++){
-                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    for (int j = 0; j < toBePrinted.size(); j++) {
+                        System.out.println("\t" + "\t - " + (j + 1) + ". " + toBePrinted.get(j));
                     }
                 }
             }
@@ -193,7 +194,7 @@ public class Ui {
      * @param tasks the list of tasks
      */
     static void printMediumPriority(ArrayList<Task> tasks) {
-        ArrayList<Integer> indexOfMediumPriority = new ArrayList<Integer>();
+        ArrayList<Integer> indexOfMediumPriority = new ArrayList<>();
         int taskCount = Task.getTaskCount();
         for (int i = 0; i < taskCount; i++) {
             if (tasks.get(i).returnPriority() == 2) {
@@ -205,10 +206,10 @@ public class Ui {
             System.out.println("\t You have " + indexOfMediumPriority.size() + " tasks that are medium in priority!");
             for (int i = 0; i < indexOfMediumPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfMediumPriority.get(i)));
-                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
                     ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
-                    for (int j = 0; j < toBePrinted.size(); j++){
-                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    for (int j = 0; j < toBePrinted.size(); j++) {
+                        System.out.println("\t" + "\t - " + (j + 1) + ". " + toBePrinted.get(j));
                     }
                 }
             }
@@ -224,7 +225,7 @@ public class Ui {
      * @param tasks the list of tasks
      */
     static void printLowPriority(ArrayList<Task> tasks) {
-        ArrayList<Integer> indexOfLowPriority = new ArrayList<Integer>();
+        ArrayList<Integer> indexOfLowPriority = new ArrayList<>();
         int taskCount = Task.getTaskCount();
         for (int i = 0; i < taskCount; i++) {
             if (tasks.get(i).returnPriority() == 1) {
@@ -236,10 +237,10 @@ public class Ui {
             System.out.println("\t You have " + indexOfLowPriority.size() + " tasks that are low in priority!");
             for (int i = 0; i < indexOfLowPriority.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + tasks.get(indexOfLowPriority.get(i)));
-                if (!tasks.get(i).getAdditionalNotes().isEmpty()){
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
                     ArrayList<String> toBePrinted = tasks.get(i).getAdditionalNotes();
-                    for (int j = 0; j < toBePrinted.size(); j++){
-                        System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+                    for (int j = 0; j < toBePrinted.size(); j++) {
+                        System.out.println("\t" + "\t - " + (j + 1) + ". " + toBePrinted.get(j));
                     }
                 }
             }
@@ -313,17 +314,17 @@ public class Ui {
     static void displayUpcomingDeadline(ArrayList<Task> tasks) {
         System.out.println("\t Here are the upcoming deadline:  ");
         int count = 0;
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof Deadline && !(tasks.get(i) instanceof RecurringDeadline)) {
+        for (Task t:tasks) {
+            if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
-                String deadline = ((Deadline) tasks.get(i)).getDeadline();
+                String deadline = ((Deadline) t).getDeadline();
                 Date d;
                 Date n = new Date();
                 try {
                     d = format.parse(deadline);
                     long diff = d.getTime() - n.getTime();
                     String di = getTimeDiff(diff);
-                    String description = tasks.get(i).getDescription().replace("deadline ", "");
+                    String description = t.getDescription().replace("deadline ", "");
                     System.out.println("\t " + (count + 1) + "." + description + " (" + di + "before the deadline)");
                     count++;
                 } catch (ParseException e) {
@@ -347,14 +348,14 @@ public class Ui {
         Date d;
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        for (int i = 0; i < tasks.size(); i++) {
+        for (Task t:tasks) {
             String timeUntilTask = null;
-            if (tasks.get(i) instanceof Deadline && !(tasks.get(i) instanceof RecurringDeadline)) {
-                timeUntilTask = ((Deadline) tasks.get(i)).getDeadline();
-            } else if (tasks.get(i) instanceof Event && !(tasks.get(i) instanceof RecurringEvent)) {
-                timeUntilTask = ((Event) tasks.get(i)).getStart();
-            } else if (tasks.get(i) instanceof SchoolClass) {
-                timeUntilTask = ((SchoolClass) tasks.get(i)).getStart();
+            if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
+                timeUntilTask = ((Deadline) t).getDeadline();
+            } else if (t instanceof Event && !(t instanceof RecurringEvent)) {
+                timeUntilTask = ((Event) t).getStart();
+            } else if (t instanceof SchoolClass) {
+                timeUntilTask = ((SchoolClass) t).getStart();
             }
             if (timeUntilTask != null) {
                 try {
@@ -366,7 +367,7 @@ public class Ui {
                             <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
                             || diffSplit[1].contains("minute"))) {
                         count++;
-                        System.out.println("\t " + count + "." + tasks.get(i).toString());
+                        System.out.println("\t " + count + "." + t);
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -439,11 +440,16 @@ public class Ui {
      */
     static void displayNextUpcomingClass(PriorityQueue<SchoolClass> classes) {
         borderLine();
+        ArrayList<SchoolClass> result = new ArrayList<>(classes);
         System.out.println("\t Here are your next upcoming class: ");
-        if (classes.isEmpty()) {
-            System.out.println("\t No upcoming class!");
+        if (result.isEmpty()) {
+            System.out.println("\t \t No upcoming class!");
         } else {
-            System.out.println("\t" + classes.peek());
+            for (SchoolClass c:result) {
+                if (c.getStatusIcon() != "X") {
+                    System.out.println("\t"+c);
+                }
+            }
         }
         borderLine();
     }
@@ -519,10 +525,11 @@ public class Ui {
         System.out.println("\t   Quack! Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
-        System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
-        System.out.println("\t - list today: I'll list out all the classes, deadlines and events you have today.");
+        System.out.println("\t - list_classes: I'll list out the classes you have on your schedule.");
+        System.out.println("\t - list_today: I'll list out all the classes, deadlines and events you have today.");
         System.out.println("\t - priority_list: " +
                 "I'll list out all the tasks you have recorded arranged by their priority.");
+        System.out.println("\t - upcoming_class: I'll list out the next upcoming class.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
         System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
         System.out.println("\t - high_priority: I'll list out all the tasks you have that are high in priority.");
@@ -534,10 +541,10 @@ public class Ui {
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
         System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
         System.out.println("\t   : I'll remove this class from your class schedule.");
-        System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!" );
-        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete the note to that task!" );
-        System.out.println("\t - edit_note <task_number> <note_number>: I'll edit the note for that task!" );
-        System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!" );
+        System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!");
+        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete the note to that task!");
+        System.out.println("\t - edit_note <task_number> <note_number>: I'll edit the note for that task!");
+        System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
@@ -607,11 +614,13 @@ public class Ui {
         System.out.println("\t Task " + taskNumber + " does not exist.");
         borderLine();
     }
-    static void exceedNoteNumberMessage(int noteNumber){
+
+    static void exceedNoteNumberMessage(int noteNumber) {
         borderLine();
         System.out.println("\t Note " + noteNumber + " does not exist for this task");
         borderLine();
     }
+
     static void todoErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid description.");
@@ -632,7 +641,7 @@ public class Ui {
         borderLine();
     }
 
-    static void enmptyDescriptionErrorMessage() {
+    static void emptyDescriptionErrorMessage() {
         borderLine();
         System.out.println("\t Error. Description cannot be empty");
         borderLine();
@@ -705,12 +714,14 @@ public class Ui {
                 "If you wish to know what I understand, just enter 'help'.");
         System.out.println("\t How may I assist you today, human?");
     }
-    static void printNotes(ArrayList<Task> tasks, String []words) {
+
+    static void printNotes(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
-        ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
+        ArrayList<String> toBePrinted = tasks.get(index - 1).getAdditionalNotes();
         borderLine();
         System.out.println("\t Here are the notes for that task quack!");
         System.out.println(tasks.get(index-1).toString());
+
         if (!toBePrinted.isEmpty()) {
             for (int i = 0; i < toBePrinted.size(); i++) {
                 System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
@@ -721,10 +732,10 @@ public class Ui {
         borderLine();
     }
 
-    static void printList(ArrayList<Task> tasks,int index){
+    static void printList(ArrayList<Task> tasks, int index) {
         ArrayList<String> toBePrinted = tasks.get(index).getAdditionalNotes();
-        for (int j = 0; j < toBePrinted.size(); j++){
-            System.out.println("\t" + "\t - " + (j+1) + ". " + toBePrinted.get(j));
+        for (int j = 0; j < toBePrinted.size(); j++) {
+            System.out.println("\t" + "\t - " + (j + 1) + ". " + toBePrinted.get(j));
         }
     }
 

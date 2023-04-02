@@ -22,13 +22,13 @@ public class Storage {
     /**
      * Load tasks and the notes under the task from save data into the list
      *
-     * @param line The line of input from the save file
+     * @param line  The line of input from the save file
      * @param tasks The array list of tasks
      */
     static void loadTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String doneStatus) {
         if (line.contains("/by")) {
             if (line.contains("/day")) {
-                loadRecurrDeadline(line, tasks);
+                loadRecurringDeadline(line, tasks);
             } else {
                 loadDeadline(line, tasks);
             }
@@ -38,7 +38,7 @@ public class Storage {
             loadSchoolClass(line, classes);
         } else if (line.contains("/from") || line.contains("/to")) {
             if (line.contains("/day")) {
-                loadRecurrEvent(line, tasks);
+                loadRecurringEvent(line, tasks);
             } else {
                 loadEvent(line, tasks);
             }
@@ -72,7 +72,7 @@ public class Storage {
      * Adds a _Todo_ into the list without generating messages,
      * to be used when loading from save data.
      *
-     * @param line The line of input from the save file
+     * @param line  The line of input from the save file
      * @param tasks The array list of tasks
      */
     static void loadTodo(String line, ArrayList<Task> tasks) {
@@ -97,14 +97,14 @@ public class Storage {
      * Adds an event into the list without generating messages,
      * to be used when loading from save data.
      *
-     * @param line The line of input from the save file
+     * @param line  The line of input from the save file
      * @param tasks The array list of tasks
      */
     static void loadEvent(String line, ArrayList<Task> tasks) {
         String description = line.substring(0, line.indexOf("/from")).trim();
         String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
         String end = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
-        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3, line.indexOf("<p>") + 4).trim();
         Event currEvent = new Event(description, start, end);
         currEvent.setPriority(priority);
         tasks.add(currEvent);
@@ -119,11 +119,11 @@ public class Storage {
         }
     }
 
-    static void loadRecurrEvent(String line, ArrayList<Task> tasks) {
+    static void loadRecurringEvent(String line, ArrayList<Task> tasks) {
         String description = line.substring(0, line.indexOf("/from")).trim();
         String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
         String end = line.substring(line.indexOf("/to") + 3, line.indexOf("<p>")).trim();
-        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("/day")).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3, line.indexOf("/day")).trim();
         DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
         RecurringEvent currEvent = new RecurringEvent(description, start, end, day);
         currEvent.setPriority(priority);
@@ -134,7 +134,7 @@ public class Storage {
      * Adds a schoolClass to the list without generating messages,
      * to be used when loading from save data.
      *
-     * @param line The line of input from the user
+     * @param line    The line of input from the user
      * @param classes The priority queue of school classes
      */
     static void loadSchoolClass(String line, PriorityQueue<SchoolClass> classes) {
@@ -153,13 +153,13 @@ public class Storage {
      * Adds a deadline into the list without generating messages,
      * to be used when loading from save data.
      *
-     * @param line The line of input from the save file
+     * @param line  The line of input from the save file
      * @param tasks The array list of tasks
      */
     static void loadDeadline(String line, ArrayList<Task> tasks) {
         String description = line.substring(0, line.indexOf("/by")).trim();
         String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("<p>")).trim();
-        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<p>") + 4).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3, line.indexOf("<p>") + 4).trim();
         Deadline currDeadline = new Deadline(description, deadline);
         currDeadline.setPriority(priority);
         tasks.add(currDeadline);
@@ -177,13 +177,13 @@ public class Storage {
     /**
      * Adds a RecurringDeadline to the list when loading from save data
      *
-     * @param line The line of input from save file
+     * @param line  The line of input from save file
      * @param tasks the array list of tasks
      */
-    static void loadRecurrDeadline(String line, ArrayList<Task> tasks) {
+    static void loadRecurringDeadline(String line, ArrayList<Task> tasks) {
         String description = line.substring(0, line.indexOf("/by")).trim();
         String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("<p>")).trim();
-        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("/day")).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3, line.indexOf("/day")).trim();
         DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
         RecurringDeadline currDeadline = new RecurringDeadline(description, deadline, day);
         currDeadline.setPriority(priority);
@@ -193,7 +193,7 @@ public class Storage {
     /**
      * Load the task status of a task from the save data
      *
-     * @param tasks The array list of tasks
+     * @param tasks      The array list of tasks
      * @param doneStatus The done status of the current task
      */
     static void loadTaskStatus(ArrayList<Task> tasks, String doneStatus) {
