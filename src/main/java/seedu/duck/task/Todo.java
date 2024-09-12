@@ -8,11 +8,11 @@ public class Todo extends Task {
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + System.lineSeparator();
+        return super.toSaveString() + " <p>" + getPriorityIndex() + " <n>" + getSavedNotes() + System.lineSeparator();
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "\t [T]" + super.toString() + " (" + getPriority() + ")";
     }
 }
